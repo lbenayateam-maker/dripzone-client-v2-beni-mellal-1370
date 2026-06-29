@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+<script>
+  // Controlled strictly by our C++ host injector before local rendering
+  window.DRIPZONE_EDIT_MODE = false;
+</script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6EME Restaurant Massira Beni Mellal — Restaurant</title>
+    <style>
+        /* Design Tokens & Theme Configuration */
+        :root {
+            --sahara-gold: #d4af37;
+            --marrakech-clay: #c86b51;
+            --atlas-emerald: #0b4f3b;
+            --deep-onyx: #0a0b0d;
+            --card-surface: #12141a;
+            --border-tint: #1f232b;
+            --text-pure: #ffffff;
+            --text-dim: #9da4b0;
+            --smooth-animation: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-display: 'Georgia', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--deep-onyx);
+            color: var(--text-pure);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; object-fit: cover; }
+
+        /* Structural Framework */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-wrapper {
+            padding: 8rem 0;
+            border-bottom: 1px solid var(--border-tint);
+        }
+
+        .section-title-block {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title-block h2 {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            color: var(--sahara-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title-block h2::after {
+            content: '❖ ❖ ❖';
+            display: block;
+            font-size: 1rem;
+            color: var(--marrakech-clay);
+            margin-top: 1rem;
+            letter-spacing: 5px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--sahara-gold);
+            color: var(--sahara-gold);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Buttons styling */
+        .action-btn {
+            display: inline-block;
+            background-color: var(--sahara-gold);
+            color: var(--deep-onyx);
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: var(--smooth-animation);
+        }
+
+        .action-btn:hover {
+            background-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(214, 175, 55, 0.2);
+        }
+
+        /* Fixed Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 11, 13, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            border-bottom: 1px solid var(--border-tint);
+        }
+
+        .global-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .nav-branding {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-branding span { color: var(--sahara-gold); }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            transition: var(--smooth-animation);
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--sahara-gold);
+        }
+
+        /* Hero Section Component */
+        .hero-billboard {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 11, 13, 0.5), rgba(10, 11, 13, 0.9)),
+                        url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFEwOX_Wc_kDVks96kUmn8IjMog--fS8xp1lY5Aqelqn-ZQeWR1FjnGVRjIU_AqBf_y5TTYOiQTWM6cCXM34IG7glamR5qmnuaZMjBaoj4XNZzl9PWT59CVzPK0VDHhggnRYUPOUWsbK5kM\u003dw86-h114-k-no') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-billboard h1 {
+            font-family: var(--font-display);
+            font-size: 5.5rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-billboard p {
+            font-size: 1.4rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        /* Chronological Heritage Timeline */
+        .story-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--border-tint);
+            transform: translateX(-50%);
+        }
+
+        .timeline-milestone {
+            position: relative;
+            width: 50%;
+            padding: 2rem 4rem;
+            box-sizing: border-box;
+        }
+
+        .timeline-milestone:nth-child(odd) { left: 0; text-align: right; }
+        .timeline-milestone:nth-child(even) { left: 50%; text-align: left; }
+
+        .timeline-milestone::after {
+            content: '❖';
+            position: absolute;
+            top: 2.5rem;
+            right: -10px;
+            background: var(--deep-onyx);
+            color: var(--sahara-gold);
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 0.8rem;
+            z-index: 5;
+        }
+
+        .timeline-milestone:nth-child(even)::after { left: -10px; right: auto; }
+
+        .milestone-date {
+            font-family: var(--font-display);
+            color: var(--marrakech-clay);
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .milestone-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--sahara-gold);
+        }
+
+        .milestone-text p { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* Advanced Filtering Interactive Menu Frame */
+        .filter-dock {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .filter-pill {
+            background-color: var(--card-surface);
+            border: 1px solid var(--border-tint);
+            color: var(--text-dim);
+            padding: 0.8rem 2rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--smooth-animation);
+        }
+
+        .filter-pill.active, .filter-pill:hover {
+            background-color: var(--atlas-emerald);
+            color: white;
+            border-color: var(--atlas-emerald);
+        }
+
+        .extended-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .menu-composite-card {
+            background-color: var(--card-surface);
+            border: 1px solid var(--border-tint);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--smooth-animation);
+            display: block;
+        }
+
+        .menu-composite-card.hidden { display: none; }
+
+        .menu-composite-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--sahara-gold);
+        }
+
+        .composite-img-box {
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .menu-composite-card:hover .composite-img-box img {
+            transform: scale(1.05);
+        }
+
+        .composite-img-box img {
+            height: 100%;
+            transition: var(--smooth-animation);
+        }
+
+        .composite-details { padding: 2rem; }
+        .composite-header-line { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .composite-name { font-family: var(--font-display); font-size: 1.4rem; color: var(--sahara-gold); }
+        .composite-cost { font-size: 1.3rem; font-weight: bold; color: var(--marrakech-clay); }
+        .composite-body { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* Cultural Entertainment Program Events Section */
+        .events-panel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .event-schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .schedule-row {
+            display: flex;
+            background: var(--card-surface);
+            border: 1px solid var(--border-tint);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: var(--smooth-animation);
+        }
+
+        .schedule-row:hover { border-color: var(--marrakech-clay); }
+
+        .schedule-time-box {
+            padding-right: 2rem;
+            border-right: 1px solid var(--border-tint);
+            margin-right: 2rem;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .schedule-time-box .day { font-size: 1.5rem; font-weight: bold; color: var(--sahara-gold); display: block; }
+        .schedule-time-box .hour { font-size: 0.85rem; color: var(--text-dim); }
+
+        .schedule-desc h4 { font-size: 1.2rem; color: white; margin-bottom: 0.3rem; }
+        .schedule-desc p { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* Master Reservation Suite Component */
+        .booking-showcase-container {
+            background-color: var(--card-surface);
+            border: 1px solid var(--border-tint);
+            padding: 5rem;
+            border-radius: 8px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .booking-matrix-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .matrix-element { display: flex; flex-direction: column; }
+        .matrix-element.spanning { grid-column: span 2; }
+        .matrix-element label { font-size: 0.85rem; text-transform: uppercase; color: var(--sahara-gold); letter-spacing: 1px; margin-bottom: 0.6rem; font-weight: 600; }
+        .matrix-element input, .matrix-element select, .matrix-element textarea {
+            background-color: var(--deep-onyx);
+            border: 1px solid var(--border-tint);
+            padding: 1rem;
+            color: white;
+            border-radius: 4px;
+            outline: none;
+            font-family: inherit;
+            transition: var(--smooth-animation);
+        }
+        .matrix-element input:focus, .matrix-element select:focus, .matrix-element textarea:focus {
+            border-color: var(--sahara-gold);
+        }
+
+        /* FAQ Accordion Grid */
+        .faq-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-block {
+            background: var(--card-surface);
+            border: 1px solid var(--border-tint);
+            padding: 2.5rem;
+            border-radius: 4px;
+        }
+
+        .faq-block h4 { color: var(--sahara-gold); font-size: 1.2rem; margin-bottom: 1rem; }
+        .faq-block p { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* Footer Infrastructure */
+        footer {
+            background-color: #050608;
+            padding: 5rem 0 2rem;
+            border-top: 1px solid var(--border-tint);
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-columns h4 { color: var(--sahara-gold); text-transform: uppercase; margin-bottom: 1.5rem; font-size: 1rem; letter-spacing: 1px; }
+        .footer-columns p, .footer-columns li { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 0.8rem; }
+
+        .footer-sub-bar {
+            border-top: 1px solid var(--border-tint);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Breakpoints Rules */
+        @media (max-width: 992px) {
+            .hero-billboard h1 { font-size: 3.8rem; }
+            .story-timeline::before { left: 2rem; }
+            .timeline-milestone { width: 100%; left: 0 !important; text-align: left !important; padding-left: 4rem; }
+            .timeline-milestone::after { left: calc(2rem - 10px) !important; right: auto !important; }
+            .events-panel-grid, .faq-grid-layout { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .booking-matrix-form { grid-template-columns: 1fr; }
+            .matrix-element.spanning { grid-column: span 1; }
+            .booking-showcase-container { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Fixed Navigation Header -->
+    <header>
+        <div class="container global-nav">
+            <div class="nav-branding"><a href="#home">MEDINA<span>RIAD</span></a></div>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-anchor active">Home</a>
+                <a href="#history" class="nav-anchor">Heritage</a>
+                <a href="#menu" class="nav-anchor">Menu</a>
+                <a href="#events" class="nav-anchor">Live Evenings</a>
+                <a href="#reserve" class="nav-anchor">Reservations</a>
+                <a href="#faq" class="nav-anchor">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero Canvas Banner -->
+    <section id="home" class="hero-billboard">
+        <div class="container">
+            <span class="badge">An Unparalleled Culinary Odyssey</span>
+            <h1 data-placeholder="hero_title">Timeless Moroccan Luxury Fine Dining</h1>
+            <p>Step through our ancestral cedar wood thresholds into an illuminated sanctuary where imperial recipes are honored with modern execution.</p>
+            <a href="#reserve" class="action-btn">Secure An Elite Table</a>
+        </div>
+    </section>
+
+    <!-- Section 2: Heritage Story Arc Timeline -->
+    <section id="history" class="container section-wrapper">
+        <div class="section-title-block">
+            <span class="badge">Our Timeline</span>
+            <h2>Our Ancestral Architecture</h2>
+        </div>
+        <div class="story-timeline">
+            <div class="timeline-milestone">
+                <div class="milestone-date">1948</div>
+                <div class="milestone-text">
+                    <h4>The Foundation of Spice Blends</h4>
+                    <p>Our grandfather opens a localized herb mill outpost in the sprawling souks of Beni Mellal, engineering custom foundational variations of pure Ras El Hanout.</p>
+                </div>
+            </div>
+            <div class="timeline-milestone">
+                <div class="milestone-date">1982</div>
+                <div class="milestone-text">
+                    <h4>The Expansion to Beni Mellal</h4>
+                    <p>Transitioning from pure dry goods distribution into elite culinary preparation, our family establishes its premium dining salon inside an abandoned palace courtyard.</p>
+                </div>
+            </div>
+            <div class="timeline-milestone">
+                <div class="milestone-date">2026</div>
+                <div class="milestone-text">
+                    <h4>Global Michelin Integrity</h4>
+                    <p>Today, our kitchen systems combine traditional clay tagines with advanced molecular gastropub techniques to create legendary dishes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Expanded Dynamic Filtration Selection Menu -->
+    <section id="menu" class="container section-wrapper">
+        <div class="section-title-block">
+            <span class="badge">The Gastronomic Bill</span>
+            <h2>The Seasonal Selection</h2>
+        </div>
+
+        <div class="filter-dock">
+            <button class="filter-pill active" onclick="executeFilter('all')">Full Banquet</button>
+            <button class="filter-pill" onclick="executeFilter('tagines')">Clay Pot Tagines</button>
+            <button class="filter-pill" onclick="executeFilter('pastilla')">Phyllo Pastillas</button>
+        </div>
+
+        <div class="extended-menu-grid">
+            <!-- Item 1: Tagine -->
+            <div class="menuhttps://lh3.googleusercontent.com/gps-cs-s/APNQkAFEwOX_Wc_kDVks96kUmn8IjMog--fS8xp1lY5Aqelqn-ZQeWR1FjnGVRjIU_AqBf_y5TTYOiQTWM6cCXM34IG7glamR5qmnuaZMjBaoj4XNZzl9PWT59CVzPK0VDHhggnRYUPOUWsbK5kM\u003dw86-h114-k-no               <img data-editable="hero_image" src="assets/hero.jpg?v=1782767617109" alt="Royal Lamb Tagine">
+                </div>
+                <div class="composite-details">
+                    <div class="composite-header-line">
+                        <span class="composite-name">Royal Lamb Shoulder Tagine</span>
+                        <span class="composite-cost">$36.00</span>
+                    </div>
+                    <p class="composite-body">Prime lamb joints slow-simmered for nine hours inside conical clay vessels alongside mountain saffron, honeyed apricots, and toasted local almonhttps://lh3.googleusercontent.com/gps-cs-s/APNQkAFEwOX_Wc_kDVks96kUmn8IjMog--fS8xp1lY5Aqelqn-ZQeWR1FjnGVRjIU_AqBf_y5TTYOiQTWM6cCXM34IG7glamR5qmnuaZMjBaoj4XNZzl9PWT59CVzPK0VDHhggnRYUPOUWsbK5kM\u003dw408-h544-k-no         <div class="menu-composite-card" data-group="pastilla">
+                <div class="composite-img<img data-editable="gallery_image_1" src="assets/gallery_1.jpg?v=1782767617128" alt="Pigeon Pastilla">=80" alt="Pigeon Pastilla">
+                </div>
+                <div class="composite-details">
+                    <div class="composite-header-line">
+                        <span class="composite-name">Imperial Pigeon Pastilla</span>
+                        <span class="composite-cost">$31.50</span>
+                    </div>
+                    <p class="composite-body">Paper-thin layers of hand-stretched pastry leaves https://images.unsplash.com/photo-1517248135467-4c7bc0e05038?auto=format&fit=crop&w=1600&h=900&q=80and crystal sugar icing coatings.</p>
+                </div>
+            </div>
+
+            <!-- Item 3: Tagine -->
+            <div class="menu-composite-card" data-group="tagines">
+         <img data-editable="gallery_image_2" src="assets/gallery_2.jpg?v=1782767617144" alt="Spiced Sea Bass Tagine">o=format&fit=crop&w=500&q=80" alt="Spiced Sea Bass Tagine">
+                </div>
+                <div class="composite-details">
+                    <div class="composite-header-line">
+                        <span class="composite-name">Wild Sea Bass Tagine</span>
+                        <span class="composite-cost">$42.00</span>
+                    </div>
+                    <p class="composite-body">Fresh ocean catch rubbed aggressively with aromatic Chermoula marinade, layered over cross-sections of sweet bell peppers, pickled lemon rinds, and cured purple olives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Live Entertainment & Acoustic Schedules -->
+    <section id="events" class="container section-wrapper">
+        <div class="events-panel-grid">
+            <div>
+                <span class="badge">Atmospheric Soundscapes</span>
+                <h3 style="font-family: var(--font-display); font-size: 2.8rem; margin-bottom: 1.5rem; color: var(--sahara-gold);">Live Traditional Musical Arts</h3>
+                <p style="color: var(--text-dim); margin-bottom: 2rem;">Dining with us extends far past the sensory limits of taste. We host live performances of traditional acoustic styles every weekend, carefully calibrated to enhance your evening's rhythm.</p>
+                <a href="#reserve" class="action-btn">Book Weekend Session</a>
+            </div>
+            <div class="event-schedule-list">
+                <div class="schedule-row">
+                    <div class="schedule-time-box">
+                        <span class="day">FRI</span>
+                        <span class="hour">20:00</span>
+                    </div>
+                    <div class="schedule-desc">
+                        <h4>Sufi Oud Devotional Solos</h4>
+                        <p>Intimate acoustic performance featuring master classical musicians playing the acoustic lute over candlelight backgrounds.</p>
+                    </div>
+                </div>
+                <div class="schedule-row">
+                    <div class="schedule-time-box">
+                        <span class="day">SAT</span>
+                        <span class="hour">21:30</span>
+                    </div>
+                    <div class="schedule-desc">
+                        <h4>Gnawa Rhythmic Spiritual Nights</h4>
+                        <p>High-energy polyrhythmic acoustic evenings utilizing traditional Sintir lutes and iron Qraqeb clappers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Master Reservation Suite Matrix -->
+    <section id="reserve" class="container section-wrapper">
+        <div class="booking-showcase-container">
+            <div class="section-title-block" style="margin-bottom: 3rem;">
+                <h2>Request Table Accommodation</h2>
+                <p style="color: var(--text-dim); margin-top: 0.5rem;">Due to strict ceiling layout capacities, weekend seating queries require structural validation.</p>
+            </div>
+            <form class="booking-matrix-form" onsubmit="event.preventDefault(); alert('Your luxury salon request has been compiled for management confirmation.');">
+                <div class="matrix-element">
+                    <label for="contactName">Primary Guest Name</label>
+                    <input type="text" id="contactName" placeholder="E.g. Yassine Benjelloun" required>
+                </div>
+                <div class="matrix-element">
+                    <label for="contactEmail">Email Destination</label>
+                    <input type="email" id="contactEmail" placeholder="guest@domain.com" required>
+                </div>
+                <div class="matrix-element">
+                    <label for="targetDate">Target Date</label>
+                    <input type="date" id="targetDate" required>
+                </div>
+                <div class="matrix-element">
+                    <label for="seatingZone">Seating Zone Selection</label>
+                    <select id="seatingZone" required>
+                        <option value="courtyard">Open Sky Fountain Riad Courtyard</option>
+                        <option value="salon">Private Arcaded Alcove Lounge</option>
+                        <option value="rooftop">Panoramic Rooftop Terrace Area</option>
+                    </select>
+                </div>
+                <div class="matrix-element spanning">
+                    <label for="dietPreferences">Allergies, Accommodations, or Occasions</label>
+                    <textarea id="dietPreferences" rows="4" placeholder="Detail any nutritional restrictions or private event requests here..."></textarea>
+                </div>
+                <button type="submit" class="action-btn spanning" style="padding: 1.2rem;">Transmit Formal Booking Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Section 6: Comprehensive FAQ Grid Layout -->
+    <section id="faq" class="container section-wrapper">
+        <div class="section-title-block">
+            <span class="badge">Common Curiosities</span>
+            <h2>Frequently Investigated Policies</h2>
+        </div>
+        <div class="faq-grid-layout">
+            <div class="faq-block">
+                <h4>Is there a dress code specification in place?</h4>
+                <p>We enforce a strict smart-casual dress code policy. Sports items, athletic wear, and casual sandals are restricted inside the main dining salons after 6:00 PM.</p>
+            </div>
+            <div class="faq-block">
+                <h4>Do you offer comprehensive vegetarian options?</h4>
+                <p>Yes, our traditional Moroccan kitchen prepares legendary non-meat courses, including the layered Couscous with Seven Vegetables and custom fire-roasted eggplant Zaalouk purees.</p>
+            </div>
+            <div class="faq-block">
+                <h4>Can I host complete private venue buyouts?</h4>
+                <p>Absolutely. Our riad palace architecture can support up to 180 guests for private banquets, corporate configurations, or custom events with curated entertainment rosters.</p>
+            </div>
+            <div class="faq-block">
+                <h4>Is valet parking support accessible at the gate?</h4>
+                <p>Yes, secure personal vehicle valet assistance is stationed right outside our drop-off driveway point throughout our evening operating frames.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Footer Architecture -->
+    <footer>
+        <div class="container footer-columns">
+            <div>
+                <div class="nav-branding" style="margin-bottom: 1.5rem;"><a href="#">MEDINA<span>RIAD</span></a></div>
+                <p>Preserving imperial culinary values across timeless architectural environments.</p>
+            </div>
+            <div>
+                <h4>Hours of Operation</h4>
+                <ul>
+                    <li>Tuesday - Friday: 18:00 - 23:30</li>
+                    <li>Saturday - Sunday: 13:00 - 00:00</li>
+                    <li><span style="color: var(--marrakech-clay); font-weight: bold;">Salons Closed on Mondays</span></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Points</h4>
+                <ul>
+                    <li>📍 Boulevard d'Anfa, Beni Mellal, Morocco</li>
+                    <li>📞 +212 522 99 88 77</li>
+                    <li>✉️ concierge@medinariad.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-sub-bar">
+            <p>&copy; 2026 Medina & Riad Culinary Frameworks. Engineered for smooth interaction and responsive cross-device consistency.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts Engine -->
+    <script>
+        // Tab-Driven Menu Filter Engine
+        function executeFilter(selectedCategory) {
+            // Manage Active Button States
+            const pills = document.querySelectorAll('.filter-pill');
+            pills.forEach(pill => pill.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Manage Target Card Visibility
+            const elements = document.querySelectorAll('.menu-composite-card');
+            elements.forEach(element => {
+                if (selectedCategory === 'all' || element.getAttribute('data-group') === selectedCategory) {
+                    element.classList.remove('hidden');
+                } else {
+                    element.classList.add('hidden');
+                }
+            });
+        }
+
+        // Smooth Scroll Tracking Highlight
+        const segments = document.querySelectorAll('section');
+        const anchors = document.querySelectorAll('.nav-anchor');
+
+        window.addEventListener('scroll', () => {
+            let activeSegmentId = '';
+            segments.forEach(segment => {
+                const upperLimit = segment.offsetTop;
+                if (pageYOffset >= (upperLimit - 250)) {
+                    activeSegmentId = segment.getAttribute('id');
+                }
+            });
+
+            anchors.forEach(anchor => {
+                anchor.classList.remove('active');
+                if (anchor.getAttribute('href').slice(1) === activeSegmentId) {
+                    anchor.classList.add('active');
+                }
+            });
+        });
+    </script>
+<script>(function(){
+  if (window.DRIPZONE_EDIT_MODE === true) return;
+  if (window.__dzProductionLockReady) return;
+  window.__dzProductionLockReady = true;
+
+  document.documentElement.classList.add('dz-production-mode');
+  document.body.classList.remove('dz-inline-edit-mode');
+
+  document.querySelectorAll('[contenteditable]').forEach(function(el){
+    el.removeAttribute('contenteditable');
+    el.removeAttribute('spellcheck');
+    el.classList.remove('dz-inline-editing');
+  });
+  document.querySelectorAll('[data-dz-inline-bound]').forEach(function(el){
+    el.removeAttribute('data-dz-inline-bound');
+  });
+
+  var css = document.createElement('style');
+  css.id = 'dz-production-lock';
+  css.textContent = [
+    'html.dz-production-mode,html.dz-production-mode body{overflow-x:hidden;scroll-behavior:smooth}',
+    'html.dz-production-mode [data-editable-token],html.dz-production-mode [data-placeholder]{',
+    '  outline:none!important;box-shadow:none!important;cursor:inherit;background:transparent!important}',
+    'html.dz-production-mode .dz-inline-editing{outline:none!important;background:transparent!important}',
+    'html.dz-production-mode [data-editable-token]:empty{display:none}',
+    'html.dz-production-mode a[href]{pointer-events:auto}'
+  ].join('');
+  if (!document.getElementById('dz-production-lock')) {
+    document.head.appendChild(css);
+  }
+})();</script></body>
+</html>
